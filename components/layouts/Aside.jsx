@@ -1,3 +1,11 @@
+"use client";
+
+import {
+  m,
+  LazyMotion,
+  domAnimation
+} from "framer-motion";
+
 import clsx from "clsx";
 
 import Icon from "@components/ui/Icon";
@@ -8,6 +16,7 @@ import Button from "@components/ui/Button";
 
 import Box from "@components/layouts/Box";
 import Flex from "@components/layouts/Flex";
+import { useState } from "react";
 
 const contactItems = [{
   id: 1,
@@ -43,7 +52,7 @@ const contactItems = [{
   iconName: "Pin",
 }]
 
-function Info() {
+function Info({ open, setOpen }) {
   return (
     <Box
       className={clsx(
@@ -94,6 +103,7 @@ function Info() {
         size="sm"
         iconOnly
         className="service-item absolute top-0 -right-px rounded-none rounded-bl-xl xl:hidden"
+        onClick={() => setOpen(!open)}
       >
         <Icon name="ChevronDown" />
       </Button>
@@ -213,33 +223,49 @@ function Socials() {
 }
 
 function Aside() {
+  const [open, setOpen] = useState(false);
+
+  const animate = {
+    transition: { type: "tween" },
+    height: open ? "auto" : 0,
+    opacity: open ? 1 : 0
+  };
+
   return (
-    <aside
-      className={clsx(
-        "z-10",
-        "relative xl:sticky",
-        "xl:top-16",
-        "flex",
-        "flex-col",
-        "xl:h-[calc(100vh-8rem)]",
-        "p-4 sm:p-8 xl:pt-16",
-        "overflow-hidden",
-        "bg-surface-light dark:bg-surface-dark",
-        "border border-[#383838]",
-        "rounded-3xl",
-        "transition-[var(--transition-1)]"
-      )}
-    >
-      <Info />
+    <LazyMotion features={domAnimation} strict>
+      <aside
+        className={clsx(
+          "z-10",
+          "relative xl:sticky",
+          "xl:top-16",
+          "flex",
+          "flex-col",
+          "xl:h-[calc(100vh-8rem)]",
+          "p-4 sm:p-8 xl:pt-16",
+          "overflow-hidden",
+          "bg-surface-light dark:bg-surface-dark",
+          "border border-[#383838]",
+          "rounded-3xl",
+          "transition-[var(--transition-1)]"
+        )}
+      >
+        <Info open={open} setOpen={setOpen} />
 
-      <Separator className="my-4 sm:my-8" />
+        <m.div
+          initial={{ height: 0, opacity: 1 }}
+          animate={animate}
+          exit={{ height: 0, opacity: 1 }}
+        >
+          <Separator className="my-4 sm:my-8" />
 
-      <Contacts />
+          <Contacts />
 
-      <Separator className="my-4 sm:my-8" />
+          <Separator className="my-4 sm:my-8" />
 
-      <Socials />
-    </aside>
+          <Socials />
+        </m.div>
+      </aside>
+    </LazyMotion>
   );
 }
 
