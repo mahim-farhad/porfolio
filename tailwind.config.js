@@ -24,7 +24,7 @@ const config = {
     fontFamily: {
       sans: ["var(--font-poppins)", ...fontFamily.sans],
       serif: ["var(--font-montserrat)", ...fontFamily.serif],
-      mono: ["var(--font-mono)", ...fontFamily.mono]
+      mono: ["var(--font-firaCode)", ...fontFamily.mono]
     },
     colors: {
       inherit: "inherit",

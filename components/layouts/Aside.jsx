@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import {
   m,
   LazyMotion,
@@ -8,6 +10,8 @@ import {
 
 import clsx from "clsx";
 
+import useWindowSize from "@hooks/useWindowSize";
+
 import Icon from "@components/ui/Icon";
 import Separator from "@components/ui/Separator";
 import Link from "@components/ui/Link";
@@ -15,8 +19,6 @@ import Typography from "@components/ui/Typography";
 import Button from "@components/ui/Button";
 
 import Box from "@components/layouts/Box";
-import Flex from "@components/layouts/Flex";
-import { useState } from "react";
 
 const contactItems = [{
   id: 1,
@@ -25,7 +27,7 @@ const contactItems = [{
     text: "richard@example.com"
   },
   label: "Email",
-  iconName: "Mail",
+  iconName: "Mail"
 }, {
   id: 2,
   link: {
@@ -41,7 +43,7 @@ const contactItems = [{
     text: "June 23, 1982"
   },
   label: "Birthday",
-  iconName: "Calendar",
+  iconName: "Calendar"
 }, {
   id: 4,
   link: {
@@ -49,7 +51,7 @@ const contactItems = [{
     text: "Sacramento, California, USA"
   },
   label: "Location",
-  iconName: "Pin",
+  iconName: "Pin"
 }]
 
 function Info({ open, setOpen }) {
@@ -57,9 +59,10 @@ function Info({ open, setOpen }) {
     <Box
       className={clsx(
         "flex-shrink-0",
-        "flex xl:flex-col",
+        "flex",
+        "xl:flex-col",
         "gap-4 sm:gap-8",
-        "items-center",
+        "items-center xl:items-start",
       )}
     >
       <figure
@@ -70,39 +73,47 @@ function Info({ open, setOpen }) {
         )}
       >
         <img
-          src="https://codewithsadee.github.io/vcard-personal-portfolio/assets/images/my-avatar.png"
+          src="https://i.ibb.co/gtdJnZG/file.png"
+          // src="https://codewithsadee.github.io/vcard-personal-portfolio/assets/images/my-avatar.png"
           alt="Mahim Farhad"
-          className="w-20 sm:w-28 xl:w-32"
+          className={clsx(
+            "w-20 sm:w-28 xl:w-full",
+          )}
         />
       </figure>
 
-      <Box className="space-y-2 lg:text-center">
+      <Box className="space-y-2">
         <Typography
           type="h5"
           title="Mahim Farhad"
           className="-mt-1.5 font-sans text-base sm:text-xl font-medium capitalize"
         >
-          Farhad Al Rashid
+          Farhad Rashid
         </Typography>
 
         <Typography
           className={clsx(
             "inline-block",
-            "h-6",
-            "px-4 py-0.5",
+            "h-6 px-2 py-0.5",
             "text-xs leading-[21px]",
-            "text-white bg-white/5",
-            "rounded-md uppercase"
+            "text-primary bg-white/5",
+            "rounded-md uppercase font-mono"
           )}
         >
-          Programmer
+          {"<Programmer />"}
         </Typography>
       </Box>
 
       <Button
         size="sm"
         iconOnly
-        className="service-item absolute top-0 -right-px rounded-none rounded-bl-xl xl:hidden"
+        className={clsx(
+          "service-item",
+          "absolute",
+          "top-0 right-0",
+          "xl:hidden",
+          "rounded-none rounded-bl-xl"
+        )}
         onClick={() => setOpen(!open)}
       >
         <Icon name="ChevronDown" />
@@ -118,13 +129,13 @@ function Contacts() {
         "my-auto",
       )}
     >
-      <ul className="space-y-4">
+      <ul className="flex flex-wrap xl:flex-col space-y-4">
         {contactItems?.map((contactItem) => (
           <li
             key={contactItem?.id}
             className={clsx(
               "flex gap-4",
-              "items-center",
+              "items-center w-1/2 xl:w-full",
             )}
           >
             <div
@@ -161,7 +172,7 @@ function Contacts() {
 function Socials() {
   return (
     <Box className="flex-shrink-0">
-      <ul class="flex gap-4 justify-center">
+      <ul class="flex gap-4">
         <li>
           <Button
             iconOnly
@@ -225,10 +236,16 @@ function Socials() {
 function Aside() {
   const [open, setOpen] = useState(false);
 
+  const windowSize = useWindowSize();
+
+  console.log(windowSize)
+
   const animate = {
-    transition: { type: "tween" },
-    height: open ? "auto" : 0,
-    opacity: open ? 1 : 0
+    height: windowSize < 1240 ? open ? "auto" : 0 : "auto",
+    opacity: windowSize < 1240 ? open ? 1 : 0 : 1,
+    transition: {
+      type: "tween"
+    }
   };
 
   return (
@@ -241,7 +258,7 @@ function Aside() {
           "flex",
           "flex-col",
           "xl:h-[calc(100vh-8rem)]",
-          "p-4 sm:p-8 xl:pt-16",
+          "p-4 sm:p-8",
           "overflow-hidden",
           "bg-surface-light dark:bg-surface-dark",
           "border border-[#383838]",
@@ -255,6 +272,9 @@ function Aside() {
           initial={{ height: 0, opacity: 1 }}
           animate={animate}
           exit={{ height: 0, opacity: 1 }}
+          className={clsx(
+            "xl:flex-1 flex flex-col",
+          )}
         >
           <Separator className="my-4 sm:my-8" />
 
