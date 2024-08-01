@@ -23,16 +23,16 @@ import Box from "@components/layouts/Box";
 const contactItems = [{
   id: 1,
   link: {
-    path: "",
-    text: "richard@example.com"
+    path: "mailto:mahim.connect@gmail.com",
+    text: "mahim.connect@gmail.com"
   },
   label: "Email",
   iconName: "Mail"
 }, {
   id: 2,
   link: {
-    path: "",
-    text: "+1 (213) 352-2795"
+    path: "tel:+880134717081",
+    text: "+880-134-717081"
   },
   label: "Phone",
   iconName: "Phone"
@@ -40,7 +40,7 @@ const contactItems = [{
   id: 3,
   link: {
     path: "/",
-    text: "June 23, 1982"
+    text: "February 20, 1999"
   },
   label: "Birthday",
   iconName: "Calendar"
@@ -48,17 +48,16 @@ const contactItems = [{
   id: 4,
   link: {
     path: "/",
-    text: "Sacramento, California, USA"
+    text: "Chattogram, BD"
   },
   label: "Location",
   iconName: "Pin"
-}]
+}];
 
 function Info({ open, setOpen }) {
   return (
     <Box
       className={clsx(
-        "flex-shrink-0",
         "flex",
         "xl:flex-col",
         "gap-4 sm:gap-8",
@@ -73,50 +72,66 @@ function Info({ open, setOpen }) {
         )}
       >
         <img
-          src="https://i.ibb.co/gtdJnZG/file.png"
-          // src="https://codewithsadee.github.io/vcard-personal-portfolio/assets/images/my-avatar.png"
+          src="https://i.ibb.co/9ZCM9dt/file-1.png"
           alt="Mahim Farhad"
           className={clsx(
-            "w-20 sm:w-28 xl:w-full",
+            "translate-y-3",
+            "w-24 sm:w-36 xl:w-full",
+            "object-cover"
           )}
         />
       </figure>
 
-      <Box className="space-y-2">
+      <Box
+        className={clsx(
+          "w-full",
+          "space-y-1 sm:space-y-4"
+        )}
+      >
         <Typography
           type="h5"
           title="Mahim Farhad"
-          className="-mt-1.5 font-sans text-base sm:text-xl font-medium capitalize"
+          className={clsx(
+            "-mt-1.5",
+            "font-sans text-base sm:text-2xl",
+            "font-medium capitalize"
+          )}
         >
           Farhad Rashid
         </Typography>
 
-        <Typography
+        <span
           className={clsx(
             "inline-block",
-            "h-6 px-2 py-0.5",
-            "text-xs leading-[21px]",
+            "h-6 py-0.5 px-2.5",
+            "font-mono text-xs leading-[21px] uppercase",
             "text-primary bg-white/5",
-            "rounded-md uppercase font-mono"
+            "rounded-md"
           )}
         >
           {"<Programmer />"}
-        </Typography>
+        </span>
       </Box>
 
       <Button
-        size="sm"
-        iconOnly
         className={clsx(
-          "service-item",
           "absolute",
           "top-0 right-0",
           "xl:hidden",
-          "rounded-none rounded-bl-xl"
+          "w-10 sm:w-auto",
+          "h-10",
+          "max-sm:p-2.5",
+          "text-xs",
+          "rounded-none rounded-bl-xl",
+          "service-item",
         )}
         onClick={() => setOpen(!open)}
       >
-        <Icon name="ChevronDown" />
+        <span className="hidden sm:block">Show Contacts</span>
+        <Icon
+          name="ChevronDown"
+          className="block sm:hidden"
+        />
       </Button>
     </Box>
   );
@@ -124,43 +139,60 @@ function Info({ open, setOpen }) {
 
 function Contacts() {
   return (
-    <Box
-      className={clsx(
-        "my-auto",
-      )}
-    >
-      <ul className="flex flex-wrap xl:flex-col space-y-4">
+    <Box className="my-auto">
+      <ul
+        className={clsx(
+          "flex flex-wrap",
+          "gap-y-4",
+          "flex-col sm:flex-row xl:flex-col"
+        )}
+      >
         {contactItems?.map((contactItem) => (
           <li
             key={contactItem?.id}
             className={clsx(
-              "flex gap-4",
-              "items-center w-1/2 xl:w-full",
+              "flex",
+              "flex-nowrap",
+              "gap-x-4",
+              "items-center",
+              "sm:w-1/2 xl:w-full",
             )}
           >
             <div
               className={clsx(
                 "flex-shrink-0",
                 "relative",
-                "w-12 h-12",
-                "p-3",
-                "text-center",
-                "bg-[#202022] rounded-lg service-item",
+                "w-12 h-12 p-3",
+                "text-center bg-[#202022]",
+                "rounded-lg",
+                "service-item",
               )}
             >
-              <Icon name={contactItem?.iconName} className="text-primary" />
+              <Icon
+                name={contactItem?.iconName}
+                className="text-primary"
+              />
             </div>
 
-            <div>
+            <div className="w-[calc(100%-4rem)]">
               <Typography
-                className="text-xs uppercase text-white/50"
+                className={clsx(
+                  "text-xs uppercase",
+                  "text-white/50"
+                )}
               >
                 {contactItem?.label}
               </Typography>
 
-              <a href="mailto:richard@example.com" className="text-sm">
+              <Link
+                href={contactItem?.link['path']}
+                className={clsx(
+                  "overflow-hidden",
+                  "text-sm text-ellipsis whitespace-nowrap",
+                )}
+              >
                 {contactItem?.link['text']}
-              </a>
+              </Link>
             </div>
           </li>
         ))}
@@ -171,8 +203,8 @@ function Contacts() {
 
 function Socials() {
   return (
-    <Box className="flex-shrink-0">
-      <ul class="flex gap-4">
+    <Box>
+      <ul className="flex gap-4 xl:justify-center">
         <li>
           <Button
             iconOnly
@@ -237,8 +269,6 @@ function Aside() {
   const [open, setOpen] = useState(false);
 
   const windowSize = useWindowSize();
-
-  console.log(windowSize)
 
   const animate = {
     height: windowSize < 1240 ? open ? "auto" : 0 : "auto",
