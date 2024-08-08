@@ -9,8 +9,8 @@ function Main({
   ...props
 }) {
   const mainClasses = twMerge(
-    "min-h-screen ",
-    "p-4 sm:p-8 md:p-12 lg:p-16",
+    "min-h-screen",
+    "p-4 sm:p-16",
     className
   );
 

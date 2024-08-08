@@ -32,7 +32,7 @@ const contactItems = [{
   id: 2,
   link: {
     path: "tel:+880134717081",
-    text: "+880-134-717081"
+    text: "+880 1634 717081"
   },
   label: "Phone",
   iconName: "Phone"
@@ -48,7 +48,7 @@ const contactItems = [{
   id: 4,
   link: {
     path: "/",
-    text: "Chattogram, BD"
+    text: "Mohra, Chattogram, BD"
   },
   label: "Location",
   iconName: "Pin"
@@ -62,30 +62,26 @@ function Info({ open, setOpen }) {
         "xl:flex-col",
         "gap-4 sm:gap-8",
         "items-center xl:items-start",
+        "xl:h-full",
       )}
     >
-      <figure
+      <Box
         className={clsx(
+          "max-xl:flex-shrink-0",
+          "w-20 sm:w-24 xl:w-full",
+          "h-20 sm:h-24 xl:h-full",
           "overflow-hidden",
           "dark:bg-white/10",
+          "bg-[url('https://i.pinimg.com/originals/f0/19/0e/f0190e4bac7a39672da2439f48d1e0f2.jpg')]",
+          "bg-no-repeat bg-bottom bg-cover",
           "rounded-xl"
         )}
-      >
-        <img
-          src="https://i.ibb.co/9ZCM9dt/file-1.png"
-          alt="Mahim Farhad"
-          className={clsx(
-            "translate-y-3",
-            "w-24 sm:w-36 xl:w-full",
-            "object-cover"
-          )}
-        />
-      </figure>
+      />
 
       <Box
         className={clsx(
           "w-full",
-          "space-y-1 sm:space-y-4"
+          "space-y-2 sm:space-y-4"
         )}
       >
         <Typography
@@ -93,19 +89,20 @@ function Info({ open, setOpen }) {
           title="Mahim Farhad"
           className={clsx(
             "-mt-1.5",
-            "font-sans text-base sm:text-2xl",
-            "font-medium capitalize"
+            "font-sans text-lg sm:!text-xl",
+            "font-normal capitalize"
           )}
         >
-          Farhad Rashid
+          Farhad Al Rashid
         </Typography>
 
         <span
           className={clsx(
             "inline-block",
-            "h-6 py-0.5 px-2.5",
-            "font-mono text-xs leading-[21px] uppercase",
-            "text-primary bg-white/5",
+            "py-0.5 px-2.5",
+            "font-mono text-xs leading-[21px]",
+            "font-medium uppercase",
+            "text-primary bg-white/10",
             "rounded-md"
           )}
         >
@@ -122,12 +119,12 @@ function Info({ open, setOpen }) {
           "h-10",
           "max-sm:p-2.5",
           "text-xs",
-          "rounded-none rounded-bl-xl",
-          "service-item",
+          "border-0 rounded-none rounded-bl-xl",
+          "service-item"
         )}
         onClick={() => setOpen(!open)}
       >
-        <span className="hidden sm:block">Show Contacts</span>
+        <span className="hidden sm:block">{open ? "Hide" : "Show"} Contacts</span>
         <Icon
           name="ChevronDown"
           className="block sm:hidden"
@@ -139,129 +136,127 @@ function Info({ open, setOpen }) {
 
 function Contacts() {
   return (
-    <Box className="my-auto">
-      <ul
-        className={clsx(
-          "flex flex-wrap",
-          "gap-y-4",
-          "flex-col sm:flex-row xl:flex-col"
-        )}
-      >
-        {contactItems?.map((contactItem) => (
-          <li
-            key={contactItem?.id}
+    <ul
+      className={clsx(
+        "flex flex-wrap",
+        "gap-y-4 sm:gap-y-8",
+        "flex-col sm:flex-row xl:flex-col"
+      )}
+    >
+      {contactItems?.map((contactItem) => (
+        <li
+          key={contactItem?.id}
+          className={clsx(
+            "flex flex-nowrap",
+            "gap-x-4 items-center",
+            "sm:w-1/2 xl:w-full",
+          )}
+        >
+          <div
             className={clsx(
-              "flex",
-              "flex-nowrap",
-              "gap-x-4",
-              "items-center",
-              "sm:w-1/2 xl:w-full",
+              "relative",
+              "flex items-center justify-center",
+              "w-12 h-12 p-3",
+              "rounded-xl",
+              "service-item",
             )}
           >
-            <div
+            <Icon
+              name={contactItem?.iconName}
+              className="text-primary"
+            />
+          </div>
+
+          <div
+            className={clsx(
+              "w-[calc(100%-4rem)]",
+              "space-y-1.5"
+            )}
+          >
+            <Typography
               className={clsx(
-                "flex-shrink-0",
-                "relative",
-                "w-12 h-12 p-3",
-                "text-center bg-[#202022]",
-                "rounded-lg",
-                "service-item",
+                "text-xs uppercase",
+                "text-white/50"
               )}
             >
-              <Icon
-                name={contactItem?.iconName}
-                className="text-primary"
-              />
-            </div>
+              {contactItem?.label}
+            </Typography>
 
-            <div className="w-[calc(100%-4rem)]">
-              <Typography
-                className={clsx(
-                  "text-xs uppercase",
-                  "text-white/50"
-                )}
-              >
-                {contactItem?.label}
-              </Typography>
-
-              <Link
-                href={contactItem?.link['path']}
-                className={clsx(
-                  "overflow-hidden",
-                  "text-sm text-ellipsis whitespace-nowrap",
-                )}
-              >
-                {contactItem?.link['text']}
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </Box>
+            <Link
+              href={contactItem?.link['path']}
+              className={clsx(
+                "overflow-hidden",
+                "text-sm text-ellipsis whitespace-nowrap",
+              )}
+            >
+              {contactItem?.link['text']}
+            </Link>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
 function Socials() {
   return (
-    <Box>
-      <ul className="flex gap-4 xl:justify-center">
-        <li>
-          <Button
-            iconOnly
-            size="sm"
-            variant="text"
-            asChild
-            className="text-white"
-          >
-            <Link href="#" title="facebook">
-              <Icon name="Facebook" />
-            </Link>
-          </Button>
-        </li>
+    <ul className="flex gap-4 xl:justify-center">
+      <li>
+        <Button
+          iconOnly
+          size="sm"
+          variant="text"
+          asChild
+          className="text-white"
+        >
+          <Link href="https://facebook.com/mahimfarhad" title="facebook">
+            <Icon name="Facebook" />
+          </Link>
+        </Button>
+      </li>
 
-        <li>
-          <Button
-            iconOnly
-            size="sm"
-            variant="text"
-            asChild
-            className="text-white"
-          >
-            <Link href="/#" title="twitter">
-              <Icon name="Twitter" />
-            </Link>
-          </Button>
-        </li>
+      <li>
+        <Button
+          iconOnly
+          size="sm"
+          variant="text"
+          asChild
+          className="text-white"
+        >
+          <Link href="https://twitter.com/mahimfarhad" title="twitter">
+            <Icon name="Twitter" />
+          </Link>
+        </Button>
+      </li>
 
-        <li>
-          <Button
-            iconOnly
-            size="sm"
-            variant="text"
-            asChild
-            className="text-white"
-          >
-            <Link href="#" title="instagram">
-              <Icon name="Instagram" />
-            </Link>
-          </Button>
-        </li>
+      <li>
+        <Button
+          iconOnly
+          size="sm"
+          variant="text"
+          asChild
+          className="text-white"
+        >
+          <Link href="https://instagram.com/mahimfarhad" title="instagram">
+            <Icon name="Instagram" />
+          </Link>
+        </Button>
+      </li>
 
-        <li>
-          <Button
-            iconOnly
-            size="sm"
-            variant="text"
-            asChild
-            className="text-white"
-          >
-            <Link href="#" title="dribbble">
-              <Icon name="Dribbble" />
-            </Link>
-          </Button>
-        </li>
-      </ul>
-    </Box>
+      <li>
+        <Button
+          iconOnly
+          size="sm"
+          variant="text"
+          asChild
+          className="text-white"
+        >
+          <Link href="https://dribbble.com/mahimfarhad" title="dribbble">
+            <Icon name="Dribbble" />
+          </Link>
+        </Button>
+      </li>
+    </ul>
   );
 }
 
@@ -271,27 +266,26 @@ function Aside() {
   const windowSize = useWindowSize();
 
   const animate = {
-    height: windowSize < 1240 ? open ? "auto" : 0 : "auto",
-    opacity: windowSize < 1240 ? open ? 1 : 0 : 1,
+    height: windowSize < 1240 ? (open ? "auto" : 0) : "auto",
+    opacity: windowSize < 1240 ? (open ? 1 : 0) : 1,
     transition: {
       type: "tween"
     }
   };
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion
+      features={domAnimation}
+      strict
+    >
       <aside
         className={clsx(
-          "z-10",
-          "relative xl:sticky",
-          "xl:top-16",
-          "flex",
-          "flex-col",
-          "xl:h-[calc(100vh-8rem)]",
-          "p-4 sm:p-8",
+          "z-10 relative xl:sticky xl:top-16",
+          "flex flex-col",
+          "xl:h-[calc(100vh-8rem)] p-4 sm:p-8",
           "overflow-hidden",
           "bg-surface-light dark:bg-surface-dark",
-          "border border-[#383838]",
+          "border border-[var(--jet)]",
           "rounded-3xl",
           "transition-[var(--transition-1)]"
         )}
@@ -299,20 +293,35 @@ function Aside() {
         <Info open={open} setOpen={setOpen} />
 
         <m.div
-          initial={{ height: 0, opacity: 1 }}
+          initial={{ height: 0 }}
           animate={animate}
-          exit={{ height: 0, opacity: 1 }}
+          exit={{ height: 0 }}
           className={clsx(
-            "xl:flex-1 flex flex-col",
+            "xl:!h-auto",
+            "xl:flex-shrink-0"
           )}
         >
-          <Separator className="my-4 sm:my-8" />
+          <Box
+            className={clsx(
+              "flex flex-col",
+            )}
+          >
+            <Separator
+              className={clsx(
+                "my-4 sm:my-8"
+              )}
+            />
 
-          <Contacts />
+            <Contacts />
 
-          <Separator className="my-4 sm:my-8" />
+            <Separator
+              className={clsx(
+                "my-4 sm:my-8"
+              )}
+            />
 
-          <Socials />
+            <Socials />
+          </Box>
         </m.div>
       </aside>
     </LazyMotion>

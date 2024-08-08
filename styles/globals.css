@@ -8,8 +8,6 @@
   --eerie-black-1: hsl(240, 2%, 13%);
   --eerie-black-2: hsl(240, 2%, 12%);
   --smoky-black: hsl(0, 0%, 7%);
-  --white-1: hsl(0, 0%, 100%);
-  --white-2: hsl(0, 0%, 98%);
   --orange-yellow-crayola: hsl(45, 100%, 72%);
   --vegas-gold: hsl(45, 54%, 58%);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
@@ -19,7 +17,7 @@
   --bg-gradient-yellow-1: linear-gradient(to bottom right, hsl(45, 100%, 71%) 0%, hsla(36, 100%, 69%, 0) 50%);
   --bg-gradient-yellow-2: linear-gradient(135deg, hsla(45, 100%, 71%, 0.251) 0%, hsla(35, 100%, 68%, 0) 59.86%), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient(to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50%);
-  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
+  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.125);
   --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
   --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
   --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
@@ -33,7 +31,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-transparent;
 }
 
 body::-webkit-scrollbar-button {
@@ -41,47 +39,25 @@ body::-webkit-scrollbar-button {
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-white/10;
+  @apply bg-white/0;
   @apply border-[5px] border-solid border-background-dark;
-  border-radius: 1.25rem;
-  box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11), 
-  inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
+  border-radius: 1rem;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: hsla(0, 0%, 100%, 0.2);
-}
-
-div::-webkit-scrollbar {
-  @apply w-4;
-}
-
-div::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-div::-webkit-scrollbar-thumb {
-  @apply bg-white/10;
-  @apply border-[5px] border-solid border-background-dark;
-  border-radius: 1.25rem;
-  box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11), 
-  inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
-}
-
-div::-webkit-scrollbar-thumb:hover {
-  background: hsla(0, 0%, 100%, 0.2);
+  @apply bg-white/20;
 }
 
 .service-item {
-  overflow: hidden;
+  @apply overflow-hidden;
   z-index: 1;
-  background: linear-gradient(
-    to bottom right, 
-    hsl(0, 0%, 25%) 0%,
-    hsla(0, 0%, 25%, 0) 50%
-  ) !important;
+  background: var(--border-gradient-onyx);
   border: 0;
-  box-shadow: 0 8px 15px hsla(0, 0%, 0%, 0.25) !important;
+  box-shadow: var(--shadow-1);
+}
+
+.service-item:hover {
+  background: var(--bg-gradient-yellow-1);
 }
 
 .service-item::before {
@@ -89,5 +65,10 @@ div::-webkit-scrollbar-thumb:hover {
   z-index: -1;
   position: absolute;
   inset: 1px;
+  background: var(--eerie-black-1);
   border-radius: inherit;
+}
+
+.service-item:hover::before {
+  background: var(--bg-gradient-yellow-2);
 }

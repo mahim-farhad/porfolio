@@ -39,8 +39,8 @@ function getTypographyVariants(type) {
     p: [
       "font-sans",
       "text-base leading-[1.75]",
-      "font-medium tracking-normal",
-      "text-gray-400"
+      "font-normal tracking-normal",
+      "text-gray-300"
     ],
     small: [
       "font-sans",
@@ -62,7 +62,9 @@ function getTypographyVariants(type) {
 
   if (!isValid) return null;
 
-  const typographyVariants = { type: typeVariant };
+  const typographyVariants = {
+    type: typeVariant
+  };
 
   return typographyVariants;
 }

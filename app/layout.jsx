@@ -32,7 +32,7 @@ function RootLayout({ children }) {
           attribute="class"
           defaultTheme="system"
           enableSystem={true}
-          disableTransitionOnChange
+        // disableTransitionOnChange
         >
           {children}
         </ThemeProvider>

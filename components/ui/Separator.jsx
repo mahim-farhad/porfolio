@@ -24,7 +24,7 @@ const Separator = forwardRef(function Separator({
         orientation === "horizontal"
           ? "h-px w-full"
           : "h-full w-px",
-        "bg-black/10 dark:bg-white/10",
+        "bg-black/10 dark:bg-[var(--jet)]",
       ), className)}
       {...props}
     />
@@ -32,5 +32,10 @@ const Separator = forwardRef(function Separator({
 });
 
 Separator.displayName = SeparatorPrimitive.Root.displayName;
+
+Separator.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object
+};
 
 export default Separator;
