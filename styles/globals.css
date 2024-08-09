@@ -48,7 +48,7 @@ body::-webkit-scrollbar-thumb:hover {
   @apply bg-white/20;
 }
 
-.service-item {
+.gradient-bg {
   @apply overflow-hidden;
   z-index: 1;
   background: var(--border-gradient-onyx);
@@ -56,11 +56,11 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: var(--shadow-1);
 }
 
-.service-item:hover {
+.gradient-bg:hover {
   background: var(--bg-gradient-yellow-1);
 }
 
-.service-item::before {
+.gradient-bg::before {
   content: "";
   z-index: -1;
   position: absolute;
@@ -69,6 +69,6 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: inherit;
 }
 
-.service-item:hover::before {
+.gradient-bg:hover::before {
   background: var(--bg-gradient-yellow-2);
 }
