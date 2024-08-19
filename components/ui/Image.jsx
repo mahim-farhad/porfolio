@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 
 function Image({
-  uniqueKey,
   src,
   alt,
   className = "",
@@ -20,7 +19,6 @@ function Image({
 
   return (
     <NextImage
-      key={uniqueKey}
       src={src}
       alt={alt}
       loading="lazy"
@@ -36,7 +34,6 @@ function Image({
 Image.displayName = "Image";
 
 Image.propTypes = {
-  uniqueKey: PropTypes.any,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,

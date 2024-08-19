@@ -283,8 +283,8 @@ function Aside() {
   const windowSize = useWindowSize();
 
   const animate = useMemo(() => ({
-    height: windowSize < 1240 ? (isOpen ? "auto" : 0) : "auto",
-    opacity: windowSize < 1240 ? (isOpen ? 1 : 0) : 1,
+    height: windowSize < 1280 ? (isOpen ? "auto" : 0) : "auto",
+    opacity: windowSize < 1280 ? (isOpen ? 1 : 0) : 1,
     transition: { type: "tween" }
   }), [windowSize, isOpen]);
 

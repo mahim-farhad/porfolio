@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 
 const Box = forwardRef(function Box({
-  uniqueKey,
   className = "",
   style = {},
   children,
@@ -16,7 +15,6 @@ const Box = forwardRef(function Box({
   return (
     <div
       ref={boxRef}
-      key={uniqueKey}
       className={boxClasses}
       style={style}
       {...props}
@@ -29,7 +27,6 @@ const Box = forwardRef(function Box({
 Box.displayName = "Box";
 
 Box.propTypes = {
-  uniqueKey: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node

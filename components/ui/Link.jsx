@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 
 function Link({
-  uniqueKey,
   href,
   title,
   transition = false,
@@ -38,7 +37,6 @@ function Link({
 
   return (
     <NextLink
-      key={uniqueKey}
       href={href}
       title={title}
       // target="_blank"
@@ -56,7 +54,6 @@ function Link({
 Link.displayName = "Link";
 
 Link.propTypes = {
-  uniqueKey: PropTypes.any,
   href: PropTypes.string.isRequired,
   title: PropTypes.string,
   transition: PropTypes.bool,

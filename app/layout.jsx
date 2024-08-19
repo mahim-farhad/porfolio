@@ -18,9 +18,8 @@ export const viewport = {
 function RootLayout({ children }) {
   const bodyClasses = twMerge(
     poppins.variable, montserrat.variable, firaCode.variable,
-    "antialiased font-sans leading-normal",
-    "text-base font-normal select-none",
-    "overflow-x-hidden overflow-overlay",
+    "antialiased font-sans text-base leading-normal font-normal",
+    "select-none overflow-x-hidden",
     "text-foreground-light dark:text-foreground-dark",
     "bg-background-light dark:bg-background-dark"
   );
@@ -32,7 +31,6 @@ function RootLayout({ children }) {
           attribute="class"
           defaultTheme="system"
           enableSystem={true}
-        // disableTransitionOnChange
         >
           {children}
         </ThemeProvider>

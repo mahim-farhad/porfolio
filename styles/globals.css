@@ -27,30 +27,29 @@
 }
 
 body::-webkit-scrollbar {
-  @apply w-5;
+  @apply w-4 xl:w-5;
 }
 
 body::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  @apply dark:bg-[var(--onyx)] xl:dark:bg-transparent;
 }
 
 body::-webkit-scrollbar-button {
-  @apply h-4 sm:h-8 md:h-12 lg:h-16;
+  @apply xl:h-[calc(4rem-5px)];
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-white/0;
-  @apply border-[5px] border-solid border-background-dark;
-  border-radius: 1rem;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  @apply bg-white/20;
+  @apply 
+    dark:bg-white/20 xl:dark:bg-[var(--jet)]
+    border-[4px] xl:border-[5px] border-solid 
+    dark:border-[var(--onyx)] xl:dark:border-background-dark
+    /* shadow-[var(--shadow-5)] */
+    rounded-xl;
 }
 
 .gradient-bg {
-  @apply overflow-hidden;
   z-index: 1;
+  overflow: hidden;
   background: var(--border-gradient-onyx);
   border: 0;
   box-shadow: var(--shadow-1);
@@ -64,9 +63,9 @@ body::-webkit-scrollbar-thumb:hover {
   content: "";
   z-index: -1;
   position: absolute;
-  inset: 1px;
   background: var(--eerie-black-1);
   border-radius: inherit;
+  inset: 1px;
 }
 
 .gradient-bg:hover::before {

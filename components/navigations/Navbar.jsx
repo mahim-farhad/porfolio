@@ -11,8 +11,8 @@ function Navbar() {
         "bottom-0 xl:bottom-auto left-0 xl:left-auto",
         "flex items-center justify-center",
         "w-full xl:w-max h-16 px-8 overflow-hidden",
-        "bg-white/5",
-        "border border-[var(--jet)]",
+        "dark:bg-surface-dark xl:dark:bg-[var(--onyx)]",
+        "border-t xl:border dark:border-[var(--jet)]",
         "rounded-none xl:rounded-bl-3xl xl:rounded-tr-3xl",
         "transition-all duration-300 ease-in-out"
       )}

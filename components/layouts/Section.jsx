@@ -9,7 +9,6 @@ function Section({
   ...props
 }) {
   const sectionClasses = twMerge(
-    "relative",
     "py-4 sm:py-8",
     className
   );

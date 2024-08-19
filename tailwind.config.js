@@ -39,7 +39,7 @@ const config = {
       },
       surface: {
         light: "#FFFFFF",
-        dark: "#1e1e1f",
+        dark: "var(--eerie-black-2)",
       },
       background: {
         light: "#F9FAFB",

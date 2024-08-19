@@ -33,7 +33,6 @@ Grid.propTypes = {
 };
 
 function GridItem({
-  uniqueKey,
   className = "",
   style = {},
   children,
@@ -43,7 +42,6 @@ function GridItem({
 
   return (
     <div
-      key={uniqueKey}
       className={gridItemClasses}
       style={style}
       {...props}
@@ -56,7 +54,6 @@ function GridItem({
 GridItem.displayName = "GridItem";
 
 GridItem.propTypes = {
-  uniqueKey: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node.isRequired
